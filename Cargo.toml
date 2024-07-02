@@ -1,0 +1,47 @@
+[workspace]
+members = ["shared", "backend", "frontend"]
+resolver = "2"
+
+[workspace.package]
+authors = ["Iven Beck"]
+edition = "2021"
+repository = "https://github.com/ibveecnk/ctrack"
+license = "Apache-2.0"
+
+[workspace.dependencies]
+color-eyre = "0.6.3"
+serde = "1.0.203"
+serde_json = "1.0.66"
+axum = "0.7.5"
+leptos = "0.6.12"
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+dead_code = "allow"  # sensible to do during development
+#unreachable_pub = "warn"
+unused = { level = "warn", priority = -1 }
+missing_docs = "deny"
+future_incompatible = { level = "warn", priority = -1 }
+let_underscore = { level = "warn", priority = -1 }
+missing_debug_implementations = "warn"
+rust_2018_idioms = { level = "warn", priority = -1 }
+rust_2021_compatibility = { level = "warn", priority = -1 }
+macro_expanded_macro_exports_accessed_by_absolute_paths = "allow" # needed for ambassador to work
+
+[workspace.lints.clippy]
+pedantic = { level = "deny", priority = -1 }
+correctness = { level = "deny", priority = -1 }
+suspicious = { level = "warn", priority = -1 }
+complexity = { level = "warn", priority = -1 }
+style = { level = "warn", priority = -1 }
+nursery = { level = "deny", priority = -1 }
+missing_docs_in_private_items = "deny"
+unwrap_used = "deny"
+missing_const_for_fn = "deny"
+print_stdout = "deny"
+print_stderr = "deny"
+enum_glob_use = "deny"
+match-wild-err-arm = "warn"
+significant_drop_in_scrutinee = "warn"
+clone_on_ref_ptr = "warn"
+self_named_module_files = "warn"

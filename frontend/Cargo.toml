@@ -1,0 +1,18 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[dependencies]
+color-eyre = "0.6.3"
+leptos = { workspace = true, features = ["csr", "nightly"] }
+reqwest = "0.12.5"
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+shared = { version = "0.1.0", path = "../shared" }
+
+[lints]
+workspace = true
