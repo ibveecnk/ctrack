@@ -56,6 +56,7 @@
                 customRust
                 openssl.dev
                 trunk
+                wasm-bindgen-cli
                 systemd.dev
               ];
 
