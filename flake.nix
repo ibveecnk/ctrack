@@ -54,8 +54,6 @@
 
               buildInputs = with pkgs; [
                 customRust
-                pnpm
-                wasm-pack
                 openssl.dev
                 trunk
                 systemd.dev
