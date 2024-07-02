@@ -1,6 +1,7 @@
 //! The backend server.
 
 use axum::{routing::get, Json};
+use color_eyre::eyre::eyre;
 use shared::dto::Message;
 
 /// This is the main entry point for the backend server.
@@ -14,7 +15,7 @@ async fn main() -> color_eyre::Result<()> {
 
     let tcp_listener = tokio::net::TcpListener::bind(&addr)
         .await
-        .map_err(|e| color_eyre::Report::msg(format!("Failed to bind to address {addr}: {e}")))?;
+        .map_err(|e| eyre!("Failed to bind to address {addr}: {e}"))?;
 
     tokio::spawn(async move {
         axum::serve(tcp_listener, app.into_make_service())
