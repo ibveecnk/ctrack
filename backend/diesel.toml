@@ -1,0 +1,7 @@
+[print_schema]
+file = "src/database/schema.rs"
+custom_type_derives = ["diesel::query_builder::QueryId", "Debug", "Display"]
+with_docs = true
+
+[migrations_directory]
+dir = "migrations"

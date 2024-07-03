@@ -6,10 +6,15 @@ use color_eyre::eyre::eyre;
 /// The handler module contains the request handlers for the backend server.
 mod handler;
 
+/// The database module contains the database connection and models.
+mod database;
+
 /// This is the main entry point for the backend server.
 #[tokio::main]
 async fn main() -> color_eyre::Result<()> {
-    let api_subrouter = axum::Router::new().route("/message", get(handler::api::message));
+    let api_subrouter = axum::Router::new()
+        .route("/message", get(handler::api::message))
+        .route("/users", get(handler::api::users));
 
     // Create a new Axum service.
     let app = axum::Router::new()

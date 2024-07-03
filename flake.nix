@@ -54,8 +54,11 @@
 
               buildInputs = with pkgs; [
                 customRust
+                sqlite
+                pkg-config
                 openssl.dev
                 trunk
+                diesel-cli
                 wasm-bindgen-cli
                 systemd.dev
               ];
@@ -76,6 +79,7 @@
               # Custom environment variables
               PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
               GIT_EDITOR = "${pkgs.convco}/bin/convco commit";
+              DATABASE_URL = "file:ctrack.db";
 
               shellHook = ''
                 echo 1>&2 "Development shell initialized."

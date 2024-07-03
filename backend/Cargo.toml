@@ -8,11 +8,18 @@ license.workspace = true
 
 [dependencies]
 axum.workspace = true
+bcrypt = "0.15.1"
 color-eyre.workspace = true
+derivative = "2.2.0"
+diesel = { version = "2.2.1", features = ["sqlite"] }
+diesel_migrations = { version = "2.2.0", features = ["sqlite"] }
+eyre = "0.6.12"
+once_cell = "1.19.0"
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
 shared = { version = "0.1.0", path = "../shared" }
 tokio = { version = "1.38.0", features = ["full"] }
+uuid = { version = "1.9.1", features = ["v4"] }
 
 [lints]
 workspace = true
