@@ -1,14 +1,20 @@
 //! The backend server.
 
-use axum::{routing::get, Json};
+use axum::routing::get;
 use color_eyre::eyre::eyre;
-use shared::dto::Message;
+
+/// The handler module contains the request handlers for the backend server.
+mod handler;
 
 /// This is the main entry point for the backend server.
 #[tokio::main]
 async fn main() -> color_eyre::Result<()> {
+    let api_subrouter = axum::Router::new().route("/message", get(handler::api::message));
+
     // Create a new Axum service.
-    let app = axum::Router::new().route("/api/message", get(message));
+    let app = axum::Router::new()
+        .nest("/api", api_subrouter)
+        .fallback(handler::not_found);
 
     // Start the server.
     let addr = "0.0.0.0:8000".parse::<std::net::SocketAddr>()?;
@@ -31,11 +37,4 @@ async fn main() -> color_eyre::Result<()> {
     loop {
         tokio::time::sleep(std::time::Duration::from_secs(60)).await;
     }
-}
-
-/// This is a simple message handler.
-async fn message() -> axum::response::Json<Message> {
-    Json(Message {
-        text: "Hello, world!".to_string(),
-    })
 }
